@@ -25,12 +25,20 @@ function reducer (state = initialState, action) {
         ...state,
         car: {
           ...state.car,
-          features: [
-            ...state.car.features,
-            action.payload
-          ]
+          features: state.car.features.concat(action.payload)
         }
       }
+    case "REMOVE_FEATURE":
+      return {
+        ...state,
+        car: {
+          ...state.car,
+          features: state.car.features.filter((item) => {
+            return (item.id !== action.payload.id)
+          })
+        }
+      }
+
     default:
       return state
   }
