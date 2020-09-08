@@ -21,19 +21,18 @@ function reducer (state = initialState, action) {
   console.log("reducer.js ran here")
   switch (action.type) {
     case "ADD_FEATURE":
-        return {
-          ...state,
-            car: {
-              ...state.car,
-              features: [
-                ...state.feature,
-                action.payload
-              ]
-            }
-
+      return {
+        ...state,
+        car: {
+          ...state.car,
+          features: [
+            ...state.car.features,
+            action.payload
+          ]
         }
+      }
     default:
-        return state
+      return state
   }
 }
 export default reducer;
