@@ -26,7 +26,10 @@ function reducer (state = initialState, action) {
         car: {
           ...state.car,
           features: state.car.features.concat(action.payload)
-        }
+        },
+        additionalPrice:
+          (state.additionalPrice + action.payload.price)
+
       }
     case "REMOVE_FEATURE":
       return {
@@ -36,7 +39,10 @@ function reducer (state = initialState, action) {
           features: state.car.features.filter((item) => {
             return (item.id !== action.payload.id)
           })
-        }
+        },
+        //NOTE: this only removes the price once, wheras the filter will remove all the items that match, so the additionalPrice will be wrong whenever removing multiple features...
+        additionalPrice:
+          (state.additionalPrice - action.payload.price)
       }
 
     default:
